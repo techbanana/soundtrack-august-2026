@@ -1,0 +1,51 @@
+name: Soundtrack Monitor
+
+on:
+  schedule:
+    # Every 5 minutes (GitHub may delay runs by a few minutes at busy times)
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      send_test:
+        description: "Send a test Slack message instead of checking status"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: soundtrack-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run monitor
+        env:
+          SOUNDTRACK_API_TOKEN: ${{ secrets.SOUNDTRACK_API_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SEND_TEST: ${{ github.event.inputs.send_test || 'false' }}
+        run: node monitor.js
+
+      - name: Commit state
+        run: |
+          git config user.name "soundtrack-monitor-bot"
+          git config user.email "actions@github.com"
+          git add state/status.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update zone status [skip ci]"
+            git pull --rebase origin ${{ github.ref_name }} || true
+            git push
+          else
+            echo "No state change to commit."
+          fi
