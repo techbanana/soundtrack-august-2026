@@ -4,6 +4,8 @@ on:
   schedule:
     # Every 5 minutes (GitHub may delay runs by a few minutes at busy times)
     - cron: "*/5 * * * *"
+    # Daily summary at 18:00 UTC = 8:00 AM Hawaii time
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       send_test:
@@ -35,6 +37,7 @@ jobs:
           SOUNDTRACK_API_TOKEN: ${{ secrets.SOUNDTRACK_API_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SEND_TEST: ${{ github.event.inputs.send_test || 'false' }}
+          DAILY_SUMMARY: ${{ github.event.schedule == '0 18 * * *' && 'true' || 'false' }}
         run: node monitor.js
 
       - name: Commit state
