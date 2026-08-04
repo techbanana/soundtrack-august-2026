@@ -12,6 +12,7 @@
  *   SLACK_WEBHOOK_URL     - Slack incoming webhook URL
  * Optional:
  *   SEND_TEST=true        - send a test Slack message and exit (no state change)
+ *   DAILY_SUMMARY=true    - send a daily status summary of all zones and exit
  */
 
 const fs = require("fs");
@@ -182,6 +183,15 @@ async function main() {
   const zones = await fetchZones();
   if (zones.length === 0) {
     throw new Error("Soundtrack API returned zero zones — not updating state or alerting.");
+  }
+
+  if (process.env.DAILY_SUMMARY === "true") {
+    const allOnline = zones.every((z) => z.online);
+    const parts = zones.map((z) => `${z.online ? "🟢" : "🔴"} ${z.location}`).join(" · ");
+    const suffix = allOnline ? " — all systems go" : " — ⚠️ attention needed";
+    await sendSlack(`🌅 Daily status (${hstTime()} HST) — ${parts}${suffix}`);
+    console.log("Daily summary sent to Slack.");
+    return; // summary run doesn't touch state; the 5-min runs handle alerting
   }
 
   console.log(`Checked ${zones.length} zone(s):`);
