@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-14T17:24:22.262Z",
+  "updatedAt": "2026-08-14T18:11:22.030Z",
   "zones": {
     "U291bmRab25lLCwxdG15YTV4MWFmNC9Mb2NhdGlvbiwsMW14cjNndmlwZHMvQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Kaimuki",
@@ -9,7 +9,7 @@
     "U291bmRab25lLCwxZmJ2Ym1mbWl2NC9Mb2NhdGlvbiwsMW96bGFka282cHMvQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Noe Valley",
       "zone": "Banan",
-      "online": false
+      "online": true
     },
     "U291bmRab25lLCwxbGRtZmszZjljMC9Mb2NhdGlvbiwsMWplcmU2MWR3cW8vQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Waikiki Shack",
