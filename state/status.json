@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T00:31:36.266Z",
+  "updatedAt": "2026-09-09T05:04:18.587Z",
   "zones": {
     "U291bmRab25lLCwxdG15YTV4MWFmNC9Mb2NhdGlvbiwsMW14cjNndmlwZHMvQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Kaimuki",
@@ -14,7 +14,7 @@
     "U291bmRab25lLCwxbGRtZmszZjljMC9Mb2NhdGlvbiwsMWplcmU2MWR3cW8vQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Waikiki Shack",
       "zone": "Waikiki Shack",
-      "online": true
+      "online": false
     }
   }
 }
