@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-24T18:59:10.124Z",
+  "updatedAt": "2026-10-24T21:25:19.050Z",
   "zones": {
     "U291bmRab25lLCwxdG15YTV4MWFmNC9Mb2NhdGlvbiwsMW14cjNndmlwZHMvQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Kaimuki",
       "zone": "Kaimuki",
-      "online": false
+      "online": true
     },
     "U291bmRab25lLCwxZmJ2Ym1mbWl2NC9Mb2NhdGlvbiwsMW96bGFka282cHMvQWNjb3VudCwsMXJ2Z2l4OWlkNHcv": {
       "location": "Noe Valley",
